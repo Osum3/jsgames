@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            height: 50px;
+            width: 80px;
+            background-color: rgb(221, 183, 94);
+            margin: 10px;
+        }
+      
+    </style>
+</head>
+<body>
+    <button class="restart" style="height:60px; width:60px"> Restart</button>
+    <div class="dad" style="background-color: blueviolet;">
+    <div class="box" id="b1">
+       
+    </div>
+    <div class="box" style="background-color:red;" id="b2"></div>
+    <div class="box" style="background-color:rgb(57, 30, 30);" id="b3"></div>
+    <div class="box" style="background-color:rgb(62, 39, 39);" id="b4"></div>
+    </div>
+</body>
+<script>
+    const boxes=document.querySelectorAll('.box');
+    // console.log(restart)
+    let pre=document.querySelector('.dad').childElementCount;
+    let a=document.querySelector('.dad')
+    a.addEventListener('click',function(e){
+        let removeit=e.target;
+        if(removeit===document.querySelector('.box')){
+
+            removeit.remove();
+        }
+       
+        pre--;
+        check()
+        
+    })
+    let empty=document.querySelector('.dad');
+    function check(){
+    if(pre===0){
+            setTimeout(()=>{alert("game ended")},10)
+
+        }
+
+    }
+    document.querySelector('.restart').addEventListener('click', () => {
+        let newdiv=document.createElement('div')
+        newdiv.className="lol"
+        
+        
+        boxes.forEach(box => {
+            newdiv.appendChild(box);
+        });
+        document.querySelector('.dad').appendChild(newdiv);
+        pre = boxes.length;
+    })
+</script>
+
+</html>
