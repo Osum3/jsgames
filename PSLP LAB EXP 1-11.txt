@@ -1,0 +1,546 @@
+1. Addition of two matrices
+2. Multiplication of two matrices
+3. Transpose of matrix
+4. Fitting of binomial distribution for given in N and P
+5. Fitting of binomial distribution after computing mean
+6. Fitting of poisson distribution for given lambda
+7. Fitting of poison distribution after computing mean
+8. Fitting of regression line
+9. Plotting of normal and exponential distribution
+10. Simplex method
+11. Assignment problem
+
+
+
+exp-1 (Addition of two matrices)
+
+clc
+printf("Samarth Khanna || ECE-B || 108 \n")
+printf("20120802822 || Group-2 \n")
+printf("Fitting of Poisson Distribution after computing mean \n\n")
+n=input("Enter maximum number of mistakes per page : ")
+printf("Enter frequency for observed number of errors : \n\n")
+sum_fx=0
+sum_f=0
+for(i=1:n+1)
+    mistakes(i)=i-1
+    printf("Frequency for number of errors = %d",mistakes(i))
+    o_f(i)=input(" ")
+    sum_f=sum_f+o_f(i)
+    sum_fx=sum_fx+o_f(i)*mistakes(i)
+end
+f_mean=sum_fx/sum_f
+lambda=f_mean
+printf("Value of mean = Value of lambda = %f \n",lambda)
+for(i=1:n+1)
+    e_p(i)=%e^(-lambda)*((lambda^(i-1)/factorial(i-1)))
+    e_f(i)=sum_f*e_p(i)
+end
+disp("The expected probabilities are :")
+for(i=1:n+1)
+    printf("P (number of errors = %d) = %f \n",i-1,e_p(i))
+end
+disp("The expected frequencies are : ")
+for(i=1:n+1)
+    printf("frequency (number of errors = %d) = %f \n",i-1,e_f(i))
+end
+
+
+
+
+
+
+
+
+
+
+exp-2 (Multiplication of two matrices)
+
+clc
+clear all
+printf("Samarth Khanna || ECE-B || 108 \n")
+printf("20120802822 || Group-2 \n")
+printf("Multiplication of two matrices \n\n")
+function [ ] = multiplication(m, n, p, q, A, B)
+C=zeros(m,n);
+if n==p
+    disp('Matrices are conformable for multiplication');
+else
+    disp('Matrices are not conformable for multiplication');
+    break;
+end
+C=A*B
+disp('The first matrix is');
+disp(A);
+disp('The Second matrix is');
+disp(B);
+disp('The multiplication of the two matrices is');
+disp(C);
+endfunction
+
+
+
+
+
+
+
+
+exp-3 (Transpose of matrix)
+
+clc
+clear all
+printf("Samarth Khanna || ECE-B || 108 \n")
+printf("20120802822 || Group-2 \n")
+printf("Transpose of matrix \n\n")
+function []=transpose(m, n, A)
+B=zeros(m,n);
+B=A'
+disp('The matrix is');
+disp (A);
+disp('Transpose of the matrix is');
+disp (B);
+endfunction
+
+
+
+
+
+
+
+
+exp-4 (Fitting of binomial distribution for given in N and P)
+
+clc
+clear all
+printf("Samarth Khanna || ECE-B || 108 \n")
+printf("20120802822 || Group-2 \n")
+printf("Fitting of Binomial Distribution (for given n & p) \n\n")
+n=input("Enter number of coins tossed (n): ")
+printf("Enter frequency of observed number of heads : \n\n")
+sum_f=0
+for(i=1:n+1)
+    heads(i)=i-1
+    printf("Frequency for number of heads = %d",heads(i)," : ")
+    o_f(i)=input(" ")
+    sum_f=sum_f+o_f(i)
+end
+p=input("Enter value of p (probability of success) : ")
+q=1-p
+for(i=1:n+1)
+    e_p(i)=(factorial(n)/(factorial(n-i+1)*factorial(i-1)))*p^(i-1)*q^(n-i+1)
+    e_f(i)=sum_f*e_p(i)
+end
+disp("The expected probabilities are : ")
+for(i=1:n+1)
+    printf("P(number of heads = %d) = %f \n",i-1,e_p(i))
+end
+disp("The expected frequencies are : ")
+for(i=1:n+1)
+    printf("Frequency (number of heads = %d) = %f \n",i-1,e_f(i))
+end
+
+
+
+
+
+
+
+exp-5 (Fitting of binomial distribution after computing mean)
+
+clc
+printf("Samarth Khanna || ECE-B || 108 \n")
+printf("20120802822 || Group-2 \n")
+printf("Fitting of Binomial Distribution after computing mean \n\n")
+n=input("Enter number of coins tossed : ")
+sum_fx=0
+sum_f=0
+printf("Enter frequency of observed number of heads : \n\n")
+for(i=1:n+1)
+    heads(i)=i-1
+    printf("Frequency for number of heads = %d",heads(i)," : ")
+    o_f(i)=input(" ")
+    sum_fx=sum_fx+o_f(i)*heads(i)
+    sum_f=sum_f+o_f(i)
+end
+f_mean=sum_fx/sum_f
+printf("The mean of the given distribution = &f \n",f_mean)
+p=f_mean/n
+q=1-p
+var=f_mean*q
+printf("The variance of the given distribution = %f \n",var)
+printf("Valur of n = %d \n",n)
+printf("Value of p (probability of success) = %f \n",p)
+for(i=1:n+1)
+    e_p(i)=(factorial(n)/(factorial(n-i+1)*factorial(i-1)))*p^(i-1)*q^(n-i+1)
+    e_f(i)=sum_f*e_p(i)
+end
+disp("The expected probabilities are : ")
+for(i=1:n+1)
+    printf("P(number of heads = %d) = %f \n",i-1,e_p(i))
+end
+disp("The expected frequencies are : ")
+for(i=1:n+1)
+    printf("Frequency (number of heads = %d) = %f \n",i-1,e_f(i))
+end
+
+
+
+
+
+
+exp-6 (Fitting of poisson distribution for given lambda)
+
+clc
+printf("Samarth Khanna || ECE-B || 108 \n")
+printf("20120802822 || Group-2 \n")
+printf("Fitting of Poisson Distribution for given lambda \n\n")
+n=input("Enter maximum number of mistakes per page : ")
+printf("Enter frequency for observed number of errors : \n\n")
+sum_f=0
+for(i=1:n+1)
+    mistakes(i)=i-1
+    printf("Frequency for number of errors = %d",mistakes(i))
+    o_f(i)=input(" ")
+    sum_f=sum_f+o_f(i)
+end
+lambda=input("Enter value of lambda : ")
+for(i=1:n+1)
+    e_p(i)=%e^(-lambda)*((lambda^(i-1)/factorial(i-1)))
+    e_f(i)=sum_f*e_p(i)
+end
+disp("The expected probabilities are : ")
+for(i=1:n+1)
+    printf("P(number of errors = %d) = %f \n",i-1,e_p(i))
+end
+disp("The expected frequencies are : ")
+for(i=1:n+1)
+    printf("Frequency (number of errors = %d) = %f \n",i-1,e_f(i))
+end
+
+
+
+
+
+
+
+exp-7 (Fitting of poison distribution after computing mean)
+
+clc
+printf("Samarth Khanna || ECE-B || 108 \n")
+printf("20120802822 || Group-2 \n")
+printf("Fitting of Poisson Distribution after computing mean \n\n")
+n=input("Enter maximum number of mistakes per page : ")
+printf("Enter frequency for observed number of errors : \n\n")
+sum_fx=0
+sum_f=0
+for(i=1:n+1)
+    mistakes(i)=i-1
+    printf("Frequency for number of errors = %d",mistakes(i))
+    o_f(i)=input(" ")
+    sum_f=sum_f+o_f(i)
+    sum_fx=sum_fx+o_f(i)*mistakes(i)
+end
+f_mean=sum_fx/sum_f
+lambda=f_mean
+printf("Value of mean = Value of lambda = %f \n",lambda)
+for(i=1:n+1)
+    e_p(i)=%e^(-lambda)*((lambda^(i-1)/factorial(i-1)))
+    e_f(i)=sum_f*e_p(i)
+end
+disp("The expected probabilities are :")
+for(i=1:n+1)
+    printf("P (number of errors = %d) = %f \n",i-1,e_p(i))
+end
+disp("The expected frequencies are : ")
+for(i=1:n+1)
+    printf("frequency (number of errors = %d) = %f \n",i-1,e_f(i))
+end
+
+
+
+
+
+
+
+exp-8 (Fitting of regression line)
+
+clc
+printf("Samarth Khanna || ECE-B || 108 \n")
+printf("20120802822 || Group-2 \n")
+printf("Fitting of Linear Regression Line through given data points \n\n")
+n=input("Enter the total Number of data points set : ")
+for(i=1:n)
+    printf("Enter data point set number %d : ",i)
+    X(i)=input(" ")
+    Y(i)=input(" ")
+end
+sum_X=sum(X)
+sum_Y=sum(Y)
+for(i=1:n)
+    XY(i)=X(i)*Y(i)
+    X2(i)=X(i)^2
+end
+sum_XY=sum(XY)
+sum_X2=sum(X2)
+m=((n*sum_XY)-(sum_X*sum_Y))/((n*sum_X2)-(sum_X^2))
+c=(sum_Y-(m*sum_X))/n
+printf("Value of m = %f \n",m)
+printf("Value of c = %f \n",c)
+printf("Equation of Regression Line => y = %fx + (%f) \n",m,c)
+
+
+
+
+
+
+
+
+exp-9 (Plotting of normal and exponential distribution)
+
+clc
+printf("Samarth Khanna || ECE-B || 20120802822 \n")
+printf("108 || Group-2 \n")
+printf("To plot Normal Distribution and Exponential Distribution \n\n")
+mu=input("Enter mean of normal distribution : ");
+sigma=input("Enter Standard Deviation of Normal Distribution : ");
+lambda=input("Enter value of Lambda : ");
+x=linspace(-10,10,100);
+y_normal=(1/(sigma*sqrt(2*%pi)))*exp(-0.5*((x-mu)/sigma).^2);
+y_exponential=lambda*exp(-lambda*x);
+clf;
+subplot(2,1,1);
+plot(x,y_normal,'-b');
+xlabel('x');
+ylabel('Probability Density');
+title('Normal Distribution');
+x=linspace(0,10,100);
+subplot(2,1,2);
+plot(x,y_exponential,'-r');
+xlabel('x');
+ylabel('Probability Density');
+title('Exponential Distribution');
+xgrid(1,1,3);
+
+
+
+
+
+
+
+
+
+exp-10 (Simplex method)
+
+clc
+printf("Samarth Khanna || ECE-B || 20120802822 \n")
+printf("108 || Group-2 \n")
+printf("Simplex Method \n\n")
+p=input("Enter the number of variables in the objective function : ");
+q=input("Enter the number of constraint equations : ");
+a=zeros(1,p);
+b=zeros(q,p);
+c=zeros(1,q);
+d=zeros(1,q);
+disp("Enter coefficients of the obejctivce function : ");
+for i=1:p
+    a(i)=input("");
+end
+m=input("Enter 1 to minimise or 2 to maximise : ");
+disp("Enter the constraint equations : ");
+for i=1:q
+    disp(["Enter equation : ",string(i)]);
+    for j=1:p
+        disp(["Enter coefficients : ",string(j)]);
+        b(i,j)=input("")
+        if j==p
+            disp("Enter 1 for <= or 2 for >= : ");
+            c(i)=input("");
+            disp("Enter constant : ");
+            d(i)=input("");
+        end
+    end
+end
+disp("Equation you entered are : ");
+if m==1
+    disp("MIN");
+else
+    disp("Max")
+end
+for i=1:p
+    disp([string(a(i)),"x",string(j),"+"]);
+    
+end
+disp("Constraint equations are : ");
+for i=1:q
+    for j=1:p
+        disp([string(b(i,j)),"x",string(j),"+"]);
+        if j==p
+            if c(i)==1
+                disp("<=",string(d(i)));
+            else
+                disp(">=",string(d(i)));
+            end
+        end
+    end
+    disp("");
+end
+disp("===============SIMPLEX TABLE IS : ================");
+disp("       CJ   |");
+for i=1:p-1
+    disp(["   ",string(a(i))])
+end
+for i=1:q-1
+    disp(["   0s",string(i)])
+end
+disp("----------------------------------------------");
+disp("BV   Cb   Xb  |");
+for i=1:p
+    disp(["  x",string(i)]);
+end
+for i=1:q
+    disp(["  s",string(i)]);
+end
+disp("   Min Xb/x");
+disp("------------------------------------------------");
+disp("    CJ-BJ |");
+for i=1:p
+    disp(["  -",string(a(i))]);
+end
+for j=1:q
+    disp("   0");
+end
+
+
+
+
+
+
+exp-11 (Assignment problem)
+
+clc;
+printf("Samarth Khanna || ECE-B || 20120802822 \n");
+printf("108 || Group-2 \n");
+printf("Assignment Problem \n\n");
+t=zeros(10,10);
+T=zeros(10,10);
+n=0;
+printf("How many Machines and Jobs do you have? : ");
+n=input(" ");
+printf("Enter cost of : ");
+for i=1:n
+    for j=1:n
+        printf("Machine %d, Job %d : ",i,j);
+        t(i,j)=input(" ");
+        T(i,j)=t(i,j);
+    end
+end
+printf("\n***Data Entered is*** : ");
+printf("\t");
+for i=1:n
+    printf("Job %d \t",i);
+end
+for i=1:n
+    printf("\n\tMachine %d \t\t",i);
+    for j=1:n
+        printf("%d\t",t(i,j));
+    end
+end
+minimum=[1000,1000,1000,1000,1000,1000,1000,1000,1000];
+for i=1:n
+    for j=1:n
+        if t(i,j)<=minimum(i)
+            minimum(i)=t(i,j);
+        end
+    end
+end
+printf(" ");
+for i=1:n
+    for j=1:n
+        t(i,j)=t(i,j)-minimum(i);
+    end
+end
+printf("\n\n***Data after row minimization decrement is***\n\t\t : ");
+printf("\t\t");
+for i=1:n
+    printf("Job %d \t",i);
+end
+for i=1:n
+    printf("\n\tMachine %d \t\t",i);
+    for j=1:n
+        printf("%d\t",t(i,j));
+    end
+end
+zerr=[1000,1000,1000,1000,1000,1000];
+zerc=[1000,1000,1000,1000,1000,1000];
+for i=1:n
+    for j=1:n
+        if t(i,j)==0
+            zerr(i)=0;
+            zerc(j)=0;
+        end
+    end
+end
+f=0;
+y=0;
+for i=1:n
+    if zerr(i)~=0
+        f=1;
+    end
+end
+for i=1:n
+    if zerc(i)~=0
+        y=1;
+    end
+end
+if f==1 || y==1 then
+mn=[1000,1000,1000,1000,1000,1000,1000,1000,1000];
+for j=1:n
+    for i=1:n
+        if t(i,j)<=mn(j)
+            mn(j)=t(i,j);
+        end
+    end
+end
+for j=1:n
+    for i=1:n
+        t(i,j)=t(i,j)-mn(j);
+    end
+end
+printf("\n\n***Data after column minimum decrement is : ***\n");
+printf("\t\t\t\t");
+for i=1:n
+    printf("Job %d \t",i);
+end
+for i=1:n
+    printf("\n\t Machine %d \t",i);
+    for j=1:n
+        printf("%d \t",t(i,j));
+    end
+end
+end
+printf("\n\n\n***Final Job Assignment is : ***");
+min_cost=0;
+for i=1:n
+    for j=1:n
+        if t(i,j)==0 then
+            printf("\nAssign Job %d to Machine %d",j,i);
+            min_cost=min_cost+T(i,j);
+            for z=1:n
+                if z~=i then
+                    if t(z,j)==0 then
+                        t(z,j)=1000;
+                    end
+                end
+            end
+            for l=1:n
+                if l~=j then
+                    if t(i,l)==0 then
+                        t(i,l)=1000;
+                    end
+                end
+            end
+        end
+    end
+end
+printf("\n\nMinimum Cost = Rs.%d",min_cost);
+printf("\n\n");
